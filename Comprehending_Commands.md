@@ -33,6 +33,13 @@ Learnt to use the `grep` command and how It can be used to traverse the whole co
 hacker@commands~grepping-for-a-needle-in-a-haystack:~$ grep pwn.college /challenge/data.txt
 pwn.college{UBTYryae5dxPMecOJUIxzLWTwcm.ddTM4QDLzYTN0czW}
 ```
+## Comparing Files
+diff command - 'diff' compares two files line by line and shows you exactly what's different between them.
+```bash
+hacker@commands~comparing-files:~$ diff /challenge/decoys_only.txt /challenge/decoys_and_real.txt 
+45a46
+> pwn.college{M85w2k0yLNFy_oRcvjMPFe128s9.01MwMDOxwCO2UDOzEzW}
+```
 ## Listing Files
 Learnt about the `ls` command and how it can be used to know the contents of a directory.<br>
 In this challenge the file run was renamed so i used `ls /challenge` to know the name of the renamed file.<br>
