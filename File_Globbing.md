@@ -8,6 +8,7 @@ hacker@globbing~matching-with-:/challenge$ /challenge/run
 You ran me with the working directory of /challenge! Here is your flag:
 pwn.college{8bWSDojhFgMYjsNq92I68Yd572L.dFjM4QDLzYTN0czW}
 ```
+/ch*/ru* also works for /challenge/run
 ## Matching with ?
 Fairly easy challenge, the `?` has similar functionality to `*` but only works for a single character.<br>
 Used to glob to the `challenge` directory by using `cd /?ha??enge` command and then ran the `/challenge/run` to get the flag.<br>
