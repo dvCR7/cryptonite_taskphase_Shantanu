@@ -294,8 +294,8 @@ alt ans - /challenge/hack 2> >(/challenge/the) | /challenge/planet
 ## Helpful theory
  Process substitution is a powerful shell feature that allows the input or output of a command to be treated as if it were a file.
 Let's break down your two examples, as they are the core of how it works:
->(command)
-You are correct in your understanding of this form.
+ >(command)
+ You are correct in your understanding of this form.
 
     What it does: The shell executes the command inside the parentheses and makes its standard input (stdin) available as a file-like object.
 
