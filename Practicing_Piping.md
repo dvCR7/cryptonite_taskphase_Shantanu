@@ -291,3 +291,38 @@ struggle with! Here is your flag:
 pwn.college{AvmDB4_ae1EmrB1dTRweQfi4NTT.dFDNwYDLzYTN0czW}
 ```
 alt ans - /challenge/hack 2> >(/challenge/the) | /challenge/planet
+## Helpful theory
+ Process substitution is a powerful shell feature that allows the input or output of a command to be treated as if it were a file.
+Let's break down your two examples, as they are the core of how it works:
+>(command)
+You are correct in your understanding of this form.
+
+    What it does: The shell executes the command inside the parentheses and makes its standard input (stdin) available as a file-like object.
+
+    How it works: The shell creates a temporary named pipe (also known as a FIFO) in the background. It then substitutes the >(command) expression with the path to this pipe (e.g., /dev/fd/63).
+
+    Your example: When you write some_command >(command_to_receive_input), the stdout of some_command is redirected to this special pipe, and command_to_receive_input reads this data from its stdin.
+
+This is precisely what happens in the solution to the previous challenge: /challenge/hack 2> >(/challenge/the). The stderr (file descriptor 2) of hack is written to a temporary pipe that is being read by the stdin of the.
+<(command)
+
+This is the opposite and is used for providing input.
+
+    What it does: The shell executes the command inside the parentheses and makes its standard output (stdout) available as a readable file-like object.
+
+    How it works: Just like the other form, the shell creates a temporary named pipe and replaces the <(command) expression with its path. The stdout of the inner command is sent to this pipe.
+
+    Use Case: This is extremely useful when a program expects a file path as an argument for input, but you want to generate that input on the fly. For instance, the diff command normally compares two files: diff file1.txt file2.txt. With process substitution, you can compare the output of two different commands directly:
+    code Bash
+        
+    diff <(sort file1.txt) <(sort file2.txt)
+
+    In this case, diff thinks it's receiving two file paths, but it's actually reading from two pipes that are being fed by the output of the two sort commands.
+
+In essence, you can think of it this way:
+
+    >(command): Creates a "write-to" file. You redirect output into it, and that output becomes the stdin for the command.
+
+    <(command): Creates a "read-from" file. The command's stdout is put into it, and another process can read from it as if it were a regular file.
+
+So, your understanding is fundamentally correct. It's a clever trick the shell uses to make processes communicate in more flexible ways than standard pipes (|) allow, especially when a command is designed to work with files rather than stdin/stdout streams.
