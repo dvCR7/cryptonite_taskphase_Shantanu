@@ -244,6 +244,7 @@ hacker@commands~finding-files:/$ cat ./opt/linux/linux-5.4/security/apparmor/fla
 pwn.college{Yrsfgo6ZDTaB6Br9SW0oZZFWmNY.dJzM4QDLzYTN0czW}
 ```
 ## Linking Files
+`ln -s originalpath linkpath`
 In this i learnt what linking is and how It can be performed.<br>
 There are two types of links Hard Link and Soft Link.<br>
 Hard Link basically creates a copy of the target file while on the other hand Soft link just has the address of the target files and refers the terminal to that address.<br>
