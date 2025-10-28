@@ -225,6 +225,16 @@ pwns
 pwn.college{oFlX_Kyy1UqGQ7LSwkXhCDi-5mg.dVDM5QDLzYTN0czW}
 pwned
 ```
+## Filtering with grep -v (invert match)
+The grep command has a very useful option: -v (invert match). While normal grep shows lines that MATCH a pattern, grep -v shows lines that do NOT match a pattern
+```bash
+hacker@dojo:~$ cat data.txt
+hello hackers!
+hello world!
+hacker@dojo:~$ cat data.txt | grep -v world
+hello hackers!
+hacker@dojo:~$
+```
 ## Duplicating Piped Data With Tee
 Learnt about `tee` command and how it is used to intercept data between piping.<br>
 Used `tee` command to overwrite pwn file with the secret argument.<br>
