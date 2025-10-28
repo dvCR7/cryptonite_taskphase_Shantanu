@@ -236,6 +236,7 @@ hello hackers!
 hacker@dojo:~$
 ```
 ## Duplicating Piped Data With Tee
+Named after a "T-splitter" from plumbing pipes, duplicates data flowing through your pipes to any number of files provided on the command line. 
 Learnt about `tee` command and how it is used to intercept data between piping.<br>
 Used `tee` command to overwrite pwn file with the secret argument.<br>
 Then used `cat pwn` to read the secret argument and passed it to get flag.<br>
