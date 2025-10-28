@@ -62,3 +62,7 @@ hacker@globbing~exclusionary-globbing:/challenge/files$ /challenge/run [!pwn]*
 You got it! Here is your flag!
 pwn.college{kHt0bISzlRJ4a_mrW5YlEre07nb.dZjM4QDLzYTN0czW}
 ```
+## Tab Completion
+1)Tab Completion
+2)Multiple options for tab completion
+3)Tab completion on commands
