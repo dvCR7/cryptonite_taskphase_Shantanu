@@ -36,6 +36,14 @@ hacker@globbing~matching-paths-with-:~$ /challenge/run /challenge/files/file_[ab
 You got it! Here is your flag!
 pwn.college{MyuhxnTyjc-N5jmirsLk5pwKEVU.dRjM4QDLzYTN0czW}
 ```
+## Multiple Globs
+Bash supports the expansion of multiple globs in a single word. For example:
+```bash
+hacker@dojo:~$ cat /*fl*
+pwn.college{YEAH}
+hacker@dojo:~$
+```
+What happens above is that the shell looks for all files in / that start with anything (including nothing), then have an f and an l, and end in anything (including ag, which makes flag).
 ## Mixing Globs
 I just had to run the 3 files in a way that they are less than 6 charecters.<br>
 It was easy as first I used `cd /challenge/files` then used `/challenge/run` and as an argument to this I passed `[cep]*`.<br>
