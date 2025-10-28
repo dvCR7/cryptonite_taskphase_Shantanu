@@ -21,6 +21,7 @@ pwn.college{8-tL2TeU1MY28cfpaGq5RuAGln6.dJjM4QDLzYTN0czW}
 ## Matching with []
 works similar to `?` but can check for multiple single characters at once.<br>
 To get the flag I had to pass 4 files at once as an argument to `/challenge/run`.<br>
+Q- Try it here! We've placed a bunch of files in /challenge/files. Change your working directory to /challenge/files and run /challenge/run with a single argument that bracket-globs into file_b, file_a, file_s, and file_h!
 ```bash
 hacker@globbing~matching-with-:~$ cd /challenge/files
 hacker@globbing~matching-with-:/challenge/files$ /challenge/run file_[absh]
