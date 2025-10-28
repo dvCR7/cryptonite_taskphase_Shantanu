@@ -280,6 +280,7 @@ is your flag:
 pwn.college{EXSD6CBS1aWv4DhSyY58D4YauTk.dBDO0UDLzYTN0czW}
 ```
 ## Split-Piping Stderr and Stdout
+BOB used process substitution
 Used 2> >() to redirect error and and > >() to redirect output.<br>
 From previous challenges and info in this, this was pretty straight forward.<br>
 ```bash
@@ -288,3 +289,4 @@ Congratulations, you have learned a redirection technique that even experts
 struggle with! Here is your flag:
 pwn.college{AvmDB4_ae1EmrB1dTRweQfi4NTT.dFDNwYDLzYTN0czW}
 ```
+alt ans - /challenge/hack 2> >(/challenge/the) | /challenge/planet
