@@ -180,6 +180,7 @@ pwns
 ## Grepping Errors
 we know that `|` operator only links output to input but not errors.<br>
 So we use `>&` to change the format of errors to output and then pipe it with grep to get the flag.<br>
+`>&` redirects one file descriptor to another file descriptor
 ```bash
 hacker@piping~grepping-errors:~$ /challenge/run 2>& 1  /file | grep pwn /file
 grep: /file: No such file or directory
