@@ -257,6 +257,16 @@ Correct! Passing secret value to /challenge/college...
 Great job! Here is your flag:
 pwn.college{0qBYKEJKfODxmG1LeswmgkQOTfm.dFjM5QDLzYTN0czW}
 ```
+## Process substitution for input
+Linux follows the philosophy that "everything is a file". That is, the system strives to provide file-like access to most resources, including the input and output of running programs! 
+Interestingly, we can go further, and hook input and output of programs to arguments of commands. This is done using Process Substitution. For reading from a command (input process substitution), use <(command). When you write <(command), bash will run the command and hook up its output to a temporary file that it will create. This isn't a real file, of course, it's what's called a named pipe, in that it has a file name.
+Q- Now for your challenge! Recall what you learned in the diff challenge from Comprehending Commands. In that challenge, you diffed two files. Now, you'll diff two sets of command outputs: /challenge/print_decoys, which will print a bunch of decoy flags, and /challenge/print_decoys_and_flag which will print those same decoys plus the real flag.
+```bash
+hacker@piping~process-substitution-for-input:~$ diff <(/challenge/print_decoys) <(/challenge/print_decoys_and_flag)
+24a25
+> pwn.college{gZ8bah42iSbHnylertOXtaUBFwq.0lNwMDOxwCO2UDOzEzW}
+hacker@piping~process-substitution-for-input:~$
+```
 ## Writing To Multiple Programs
 I piped the output of `/challenge/hack` to `/challenge/the` and `/challenge/planet`.<br>
 And got the flag.<br>
