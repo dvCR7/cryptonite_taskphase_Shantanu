@@ -33,6 +33,7 @@ You've set the PWN variable properly! As promised, here is the flag:
 pwn.college{gQPipLURs32lINqvIF9Ij2KrtxD.dBjN1QDLzYTN0czW}
 ```
 ## Exporting Variables
+Variables that you set in a shell session are local to that shell process. That is, other commands you run won't inherit them.
 Learnt about scope of variables in shell.<br>
 Learnt how by default when variables are created, they are not inherited by the child of the main shell.<br>
 we have to use the `export command` to export them to the child shell.<br>
