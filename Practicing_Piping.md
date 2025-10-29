@@ -326,3 +326,52 @@ In essence, you can think of it this way:
     <(command): Creates a "read-from" file. The command's stdout is put into it, and another process can read from it as if it were a regular file.
 
 So, your understanding is fundamentally correct. It's a clever trick the shell uses to make processes communicate in more flexible ways than standard pipes (|) allow, especially when a command is designed to work with files rather than stdin/stdout streams.
+## Named Pipes
+Named pipes, also known as FIFOs (First In, First Out), are a powerful tool for inter-process communication on Unix-like systems.[1][2] Unlike traditional unnamed pipes, which are temporary and exist only as long as the processes using them, named pipes are persistent entries in the filesystem.[3] This allows unrelated processes to communicate with each other.
+--Creating and Identifying Named Pipes--
+You can create a named pipe using the mkfifo command
+```bash
+hacker@dojo:~$ mkfifo my_pipe
+hacker@dojo:~$ ls -l my_pipe
+prw-r--r-- 1 hacker hacker 0 Jan 1 12:00 my_pipe
+-rw-r--r-- 1 hacker hacker 0 Jan 1 12:00 some_file
+hacker@dojo:~$
+```
+the p in the properties of my_pipe tells that its a pipe
+Key Characteristics of Named Pipes:
+
+    Blocking Operations: By default, operations on named pipes are "blocking." This means a process trying to write to a pipe will pause until another process reads from it, and vice-versa. [4]This ensures that data is transferred only when both a sender and a receiver are ready.
+
+    No Disk Storage: Data flows directly from the writing process to the reading process through memory. Nothing is stored on the disk.
+
+    Ephemeral Data: Once data is read from a FIFO, it's gone and cannot be read again.
+
+    Synchronization: The blocking nature of FIFOs provides automatic synchronization between processes. A writer will wait for a reader, and a reader will wait for a writer, ensuring that they are in step.
+
+    Complex Data Flows: Named pipes are useful for creating more complex data workflows, including merging and splitting data streams between multiple processes. They support multiple writers and readers.
+CHALLENGE - You'll need to create a /tmp/flag_fifo file and redirect the stdout of /challenge/run to it. If you're successful, /challenge/run will write the flag into the FIFO! Go do it!.
+```bash
+TERMINAL 1
+hacker@piping~named-pipes:/$ cd /tmp
+hacker@piping~named-pipes:/tmp$ pwd
+/tmp
+hacker@piping~named-pipes:/tmp$ mkfifo flag_fifo
+hacker@piping~named-pipes:/tmp$ /challenge/run > flag_fifo 
+You're successfully redirecting /challenge/run to a FIFO at /tmp/flag_fifo! 
+Bash will now try to open the FIFO for writing, to pass it as the stdout of 
+/challenge/run. Recall that operations on FIFOs will *block* until both the 
+read side and the write side is open, so /challenge/run will not actually be 
+launched until you start reading from the FIFO!
+hacker@piping~named-pipes:/tmp$
+```
+```bash
+TERMINAL 2
+hacker@piping~named-pipes:~$ cat flag_fifo
+hacker@piping~named-pipes:~$ pwd
+/home/hacker
+hacker@piping~named-pipes:~$ cat /tmp/flag_fifo 
+You've correctly redirected /challenge/run's stdout to a FIFO at 
+/tmp/flag_fifo! Here is your flag:
+pwn.college{ULSjh3CRG4cMsheoCf30JPjhmN1.01MzMDOxwCO2UDOzEzW}
+hacker@piping~named-pipes:~$ 
+```
